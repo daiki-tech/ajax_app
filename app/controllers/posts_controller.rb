@@ -9,4 +9,15 @@ class PostsController < ApplicationController
     redirect_to action: :index
   end
  
- end
+  def cheked
+    post = Post.find(params[:id])
+    if post.cheked
+      post.update(cheked: false)
+    else
+      post.update(cheked: true)
+    end
+  
+    item = Post.find(params[:id])
+    render json: { post: item}
+  end
+end
